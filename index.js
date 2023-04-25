@@ -4,12 +4,12 @@ from 0 to 100
  */
 
 const printNum = () => {
-    for (var i = 0; i <= 100; i++) {
-        setTimeout(() => console.log(i), 1000)
-    }
-}
+  for (let i = 0; i <= 100; i++) {
+    setTimeout(() => console.log(i), 1000);
+  }
+};
 
-printNum()
+printNum();
 
 /*
 2. Given the array below:
@@ -22,25 +22,47 @@ You only need to produce the same array as expected result, no need to consider 
 possibility.
  */
 
-let myArr = ['12-24-2014', '09-2022-23', '12-30-2021', '08-02-2021', '07-15-2018', '2019-12-14', '2022-14-12']
+let myArr = [
+  '12-24-2014',
+  '09-2022-23',
+  '12-30-2021',
+  '08-02-2021',
+  '07-15-2018',
+  '2019-12-14',
+  '2022-14-12',
+];
 const fixDate = (array) => {
-    /* provide your code here */
-}
-let newArr = fixDate(myArr)
-console.log(newArr)
+  const newArr = array.map((date) => {
+    const splitDate = date.split('-');
+    //sort array in ascending order
+    splitDate.sort((a, b) => {
+      return a - b;
+    });
+    if (splitDate[0] <= splitDate[1]) {
+      //swap places of date and month in splitDate array
+      //(not completely optimal but we can't know which <12 is month or day anyway)
+      [splitDate[0], splitDate[1]] = [splitDate[1], splitDate[0]];
+      date = splitDate.join('-');
+    }
+    return date;
+  });
+  return newArr;
+};
+let newArr = fixDate(myArr);
+console.log(newArr);
 
 /*
 3. Counter function
 Write a counter funtion to print out in console the time difference between 2 given date
 Expected result in the console: 11 days - 13 hours - 38 minutes - 20 seconds
 */
-const dateFrom = new Date(500000)
-const dateTo = new Date(1000000000)
+const dateFrom = new Date(500000);
+const dateTo = new Date(1000000000);
 const counter = (from, to) => {
-    /* provide your code here */
-}
-const timer = counter(dateFrom, dateTo)
-console.log(timer)
+  /* provide your code here */
+};
+const timer = counter(dateFrom, dateTo);
+console.log(timer);
 
 /*
 4. Provide logic for function generateNewFolderName, which receive an array as argument. Everytime the function gets called,
@@ -50,15 +72,15 @@ to array, and so on.
 */
 
 const generateNewFolderName = (existingFolders) => {
-    /*  provide your code here */
-}
+  /*  provide your code here */
+};
 
-let folder = []
-generateNewFolderName(folder)
-generateNewFolderName(folder)
-generateNewFolderName(folder)
-generateNewFolderName(folder)
-console.log(folder) //expect to see ['New Folder', 'New Folder (1)', 'New Folder (2)', 'New Folder (3)']
+let folder = [];
+generateNewFolderName(folder);
+generateNewFolderName(folder);
+generateNewFolderName(folder);
+generateNewFolderName(folder);
+console.log(folder); //expect to see ['New Folder', 'New Folder (1)', 'New Folder (2)', 'New Folder (3)']
 
 /* 5. Write a higher order function in JavaScript called debounce that can be used to debounce a callback function. 
 The debounce function should take two arguments: the callback function to debounce and the delay time in milliseconds. 
@@ -66,12 +88,12 @@ The debounced function returned by debounce should wait until the delay time has
 If the debounced function is called again within the delay time, the timer should be reset and the callback function should be called after the delay time has passed. 
 Your solution should be implemented in JavaScript without using any third-party libraries or frameworks. */
 const debounce = (callback, timer) => {
-    //Your code goes here
-}
+  //Your code goes here
+};
 
 //This is the test code for the debounce function
 for (let i = 0; i < 5; i++) {
-    debounce(() => console.log("this should print out only once"), 1000)
+  debounce(() => console.log('this should print out only once'), 1000);
 }
 
 /* 6. Create a function called cacheFunc that takes another function as an argument and returns a new function. 
@@ -80,47 +102,51 @@ If the new function is called with the same arguments again, it should return th
 The new function should have a cache property that stores the cached results. */
 
 const cacheFunc = (callback) => {
-    //Your code goes here
-}
+  //Your code goes here
+};
 
 //This is the test code for cacheFunc
 const addition = (a, b) => {
-    console.log("addition of " + a + " and " + b)
-    return a + b
-}
+  console.log('addition of ' + a + ' and ' + b);
+  return a + b;
+};
 const subtraction = (a, b) => {
-    console.log("subtraction of " + a + " and " + b)
-    return a - b
-}
-const cacheAddition = cacheFunc(addition)
-const cacheSubtraction = cacheFunc(subtraction)
-console.log(cacheAddition(10, 5)) // should print out: "addition of 10 and 5" and "15"
-console.log(cacheAddition(10, 5)) // should print out: "15"
-console.log(cacheAddition(10, 9)) // should print out: "addition of 10 and 9" and "19"
-console.log(cacheAddition(10, 9)) // should print out: "19"
-console.log(cacheSubtraction(10, 5)) // should print out: "subtraction of 10 and 5" and "5"
-console.log(cacheSubtraction(10, 5)) // should print out: "5"
+  console.log('subtraction of ' + a + ' and ' + b);
+  return a - b;
+};
+const cacheAddition = cacheFunc(addition);
+const cacheSubtraction = cacheFunc(subtraction);
+console.log(cacheAddition(10, 5)); // should print out: "addition of 10 and 5" and "15"
+console.log(cacheAddition(10, 5)); // should print out: "15"
+console.log(cacheAddition(10, 9)); // should print out: "addition of 10 and 9" and "19"
+console.log(cacheAddition(10, 9)); // should print out: "19"
+console.log(cacheSubtraction(10, 5)); // should print out: "subtraction of 10 and 5" and "5"
+console.log(cacheSubtraction(10, 5)); // should print out: "5"
 
 /* 7. Check the code below, fix the bug and complete withMetrics to make the final console.log
 print out the expect result */
 const createRecipe = (name, instructions) => {
-    return {
-        name,
-        instructions,
-        printInstructions: () => {
-            console.log(`Instructions for ${this.name}:`)
-            console.log(this.instructions + `for ${this.time} seconds. Contain ${this.calories} calories`)
-        }
-    }
-}
+  return {
+    name,
+    instructions,
+    printInstructions: () => {
+      console.log(`Instructions for ${this.name}:`);
+      console.log(
+        this.instructions +
+          `for ${this.time} seconds. Contain ${this.calories} calories`
+      );
+    },
+  };
+};
 
-const withMetrics = (time, calories) => {
+const withMetrics = (time, calories) => {};
 
-}
-
-const pancakeRecipe = withMetrics(30, 200)(createRecipe('Pancakes', 'Mix flour, eggs, and milk. Cook on a griddle.'))
+const pancakeRecipe = withMetrics(
+  30,
+  200
+)(createRecipe('Pancakes', 'Mix flour, eggs, and milk. Cook on a griddle.'));
 /** Expected result
  * Instructions for Pancakes:
  * Mix flour, eggs, and milk. Cook on a griddle.for 30 seconds. Contain 200 calories
  */
-pancakeRecipe.printInstructions()
+pancakeRecipe.printInstructions();
