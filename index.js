@@ -60,6 +60,18 @@ const dateFrom = new Date(500000);
 const dateTo = new Date(1000000000);
 const counter = (from, to) => {
   /* provide your code here */
+  const timeDiff = to.getTime() - from.getTime();
+  const oneSecond = 1000;
+  const oneMinute = 60 * oneSecond;
+  const oneHour = 60 * oneMinute;
+  const oneDay = 24 * oneHour;
+
+  const days = Math.floor(timeDiff / oneDay);
+  const hours = Math.floor((timeDiff % oneDay) / oneHour);
+  const minutes = Math.floor((timeDiff % oneHour) / oneMinute);
+  const seconds = Math.floor((timeDiff % oneMinute) / oneSecond);
+
+  return `${days} days - ${hours} hours - ${minutes} minutes - ${seconds} seconds`;
 };
 const timer = counter(dateFrom, dateTo);
 console.log(timer);
