@@ -85,6 +85,13 @@ to array, and so on.
 
 const generateNewFolderName = (existingFolders) => {
   /*  provide your code here */
+  let count = 1;
+  let newFolderName = 'New Folder';
+  while (existingFolders.includes(newFolderName)) {
+    newFolderName = `New Folder (${count})`;
+    count++;
+  }
+  existingFolders.push(newFolderName);
 };
 
 let folder = [];
