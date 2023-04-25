@@ -179,8 +179,8 @@ const createRecipe = (name, instructions) => {
 };
 
 const withMetrics = (time, calories) => {
+  //FOR MYSELF: returned function expects recipe object as it's argument
   return (args) => {
-    console.log(args);
     return {
       ...args,
       time,
@@ -189,11 +189,12 @@ const withMetrics = (time, calories) => {
   };
 };
 
+//FOR MYSELF: Call withMetrics with time and calories. withMetrics returns a function
+// where recipe object from createRecipe is passed
 const pancakeRecipe = withMetrics(
   30,
   200
 )(createRecipe('Pancakes', 'Mix flour, eggs, and milk. Cook on a griddle.'));
-console.log(pancakeRecipe);
 /** Expected result
  * Instructions for Pancakes:
  * Mix flour, eggs, and milk. Cook on a griddle.for 30 seconds. Contain 200 calories
