@@ -168,7 +168,7 @@ const createRecipe = (name, instructions) => {
   return {
     name,
     instructions,
-    printInstructions: () => {
+    printInstructions: function () {
       console.log(`Instructions for ${this.name}:`);
       console.log(
         this.instructions +
@@ -178,12 +178,22 @@ const createRecipe = (name, instructions) => {
   };
 };
 
-const withMetrics = (time, calories) => {};
+const withMetrics = (time, calories) => {
+  return (args) => {
+    console.log(args);
+    return {
+      ...args,
+      time,
+      calories,
+    };
+  };
+};
 
 const pancakeRecipe = withMetrics(
   30,
   200
 )(createRecipe('Pancakes', 'Mix flour, eggs, and milk. Cook on a griddle.'));
+console.log(pancakeRecipe);
 /** Expected result
  * Instructions for Pancakes:
  * Mix flour, eggs, and milk. Cook on a griddle.for 30 seconds. Contain 200 calories
