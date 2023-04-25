@@ -132,6 +132,16 @@ The new function should have a cache property that stores the cached results. */
 
 const cacheFunc = (callback) => {
   //Your code goes here
+  let cache = {};
+  return (...args) => {
+    let key = String(args);
+    if (key in cache) {
+      return cache[key];
+    } else {
+      cache[key] = callback(...args);
+      return cache[key];
+    }
+  };
 };
 
 //This is the test code for cacheFunc
